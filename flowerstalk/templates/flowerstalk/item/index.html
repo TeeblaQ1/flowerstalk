@@ -1,0 +1,114 @@
+{% extends 'flowerstalk/base.html' %}
+{% load static %}
+
+{% block title %}
+Welcome To The Flower Shop
+{% endblock %}
+{% block content %}
+<section class="owl-carousel owl-theme hero">
+    <div class="slide hero-item-1 relative">
+        <div class="hero-text">
+            <h1>Flowers can't solve all problems, but they are a great start.</h1>
+            <p>We pride ourselves in the quality of our products and services</p>
+            <button><a href="categories.html">Shop Now</a></button>
+        </div>
+    </div>
+    <div class="slide hero-item-2 relative">
+        <div class="hero-text slide-two">
+            <h1>Life is the flower for which love is the honey.</h1>
+            <p>We pride ourselves in the quality of our products and services</p>
+            <button><a href="categories.html">Shop Now</a></button>
+        </div>
+    </div>
+    <div class="slide hero-item-3 relative">
+        <div class="hero-text">
+            <h1>Gifts and flowers for your beloved.</h1>
+            <p>We pride ourselves in the quality of our products and services</p>
+            <button><a href="categories.html">Shop Now</a></button>
+        </div>
+    </div>
+    <div class="slide hero-item-2 relative">
+        <div class="hero-text slide-two">
+            <h1>Life is the flower for which love is the honey.</h1>
+            <p>We pride ourselves in the quality of our products and services</p>
+            <button><a href="categories.html">Shop Now</a></button>
+        </div>
+    </div>
+    <div class="slide hero-item-3 relative">
+        <div class="hero-text">
+            <h1>Gifts and flowers for your beloved.</h1>
+            <p>We pride ourselves in the quality of our products and services</p>
+            <button><a href="categories.html">Shop Now</a></button>
+        </div>
+    </div>
+</section>
+<section class="banner">
+    <div class="section-wrap flex">
+        <div class="banner-item flex">
+            <img src="{% static 'img/fast.svg' %}" alt="">
+            <div class="banner-item-text">
+                <p>Shipping</p>
+                <p class="light-text">Nigeria only</p>
+            </div>
+        </div>
+        <div class="banner-item flex">
+            <img src="{% static 'img/gift.svg' %}" alt="">
+            <div class="banner-item-text">
+                <p>Offers and gift</p>
+                <p class="light-text">Special orders</p>
+            </div>
+        </div>
+        <div class="banner-item flex">
+            <img src="{% static 'img/shield.svg' %}" alt="">
+            <div class="banner-item-text">
+                <p>Secure checkout</p>
+                <p class="light-text">Secured by Flutterwave</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="text-section">
+    <p>The act of sending flowers conveys your heart’s deepest emotions when you are lost for words. A bouquet of simple gorgeous roses will make someone smile so readily. 
+    Start spreading your joy to loved ones now!!!
+    </p>
+</section>
+<section class="deals">
+    <div class="section-wrap">
+        <div class="section-heading flex center">
+            <hr> <h2>Deals of the day</h2> <hr>
+        </div>
+        <div class="deals-wrap flex center">
+            {% for deal in deals %}
+            <div class="deals-item" data-href="{{deal.get_absolute_url}}" onclick="itemDetailsPage('{{deal.get_absolute_url}}')">
+                <img src="{{deal.image.url}}" alt="">
+                <div class="deals-item-text-wrap">
+                    <div class="deals-item-text">
+                        <p class="light-text">{{deal.category | capfirst}}</p>
+                        <p>{{deal.name}}</p>
+                        <p class="price"><b>&#8358;{{deal.price}}</b></p>
+                    </div>
+                    <img src="{% static 'img/cart.svg' %}" alt="" onclick="addItemToCart('{{deal.id}}');">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="gallery">
+    <div class="gallery-item span-1 first-line pos1">
+        <img src="{% static 'img/gal1.png' %}" alt="">
+    </div>
+    <div class="gallery-item span-2 first-line">
+        <img src="{% static 'img/gal2.png' %}" alt="">
+    </div>
+    <div class="gallery-item wide">
+        <img src="{% static 'img/gal3.png' %}" alt="">
+    </div>
+    <div class="gallery-item span-1 second-line">
+        <img src="{% static 'img/gal4.png' %}" alt="">
+    </div>
+    <div class="gallery-item span-2 second-line pos1">
+        <img src="{% static 'img/gal5.png' %}" alt="">
+    </div>
+</section>
+{% endblock %}

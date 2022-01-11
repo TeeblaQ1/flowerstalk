@@ -1,0 +1,31 @@
+{% extends 'flowerstalk/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block title %}
+{{item.name}}
+{% endblock %}
+
+{% block content %}
+<div class="product-details-container wrap flex">
+    <div class="product-image">
+        <img src="{{item.image.url}}" alt="{{item.name}}">
+    </div>
+    <div class="product-details">
+        <div>
+            <h1>{{item.name | capfirst}}</h1>
+            <p class="stock light-text">In stock - {{item.quantity}}</p>
+            <div class="price">Price: &#8358;{{item.price | intcomma}}</div>
+        </div>
+        <form action="{% url 'cart:cart_add' item.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <button type="submit">Add to cart</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

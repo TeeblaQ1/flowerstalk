@@ -1,0 +1,91 @@
+{% extends 'flowerstalk/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load mathfilters %}
+
+{% block title %}
+Choose A Delivery Method
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <h1 class="page-title">Choose delivery option</h1>
+            <div class="wrap">
+                <div class="delivery-wrap">
+                    <div class="delivery-options flex between">
+                        <div class="radio-wrap">
+                            <input type="radio" name="delivery-option" id="delivery" checked onclick="pickDeliveryMethod();" onchange="getDeliveryFee();"> <p>Delivery</p>
+                        </div>
+                        <div class="radio-wrap">
+                            <input type="radio" name="delivery-option" id="pickup" onclick="pickDeliveryMethod();" onchange="getDeliveryFee();">
+                            <p>Pick-up</p>
+                        </div>
+                        
+                    </div>     
+                    <div class="inputs-wrap">
+                        <div class="delivery-inputs">
+                            <label class="required" for="name">Enter your Name</label>
+                            <input type="text" name="name" placeholder="Enter your name">
+                            <label class="required" for="email">Enter your Email</label>
+                            <input type="email" name="email" placeholder="Enter your email">
+                            <label class="required" for="phone">Enter your Phone</label>
+                            <input type="text" name="phone" placeholder="Enter your phone number">
+                            <label class="required" for="delivery-option">Choose a location nearest to you</label>
+                            <select name="lga" id="delivery-option" onchange="getDeliveryFee();">
+                                <option value="neutral">Choose a location</option>
+                                <option value="ikoyi">Ikoyi</option>
+                                <option value="vi">VI</option>
+                                <option value="marina">Marina</option>
+                                <option value="lekki">Lekki</option>
+                                <option value="ajah">Ajah</option>
+                                <option value="ikeja">Ikeja</option>
+                                <option value="apapa">Apapa</option>
+                                <option value="festac">Festac</option>
+                                <option value="yaba">Yaba</option>
+                                <option value="ikorodu">Ikorodu</option>
+                            </select>
+                            <label class="required" for="address">Enter your address</label>
+                            <textarea  name="address" id="id_address" cols="30" rows="10" placeholder="Address"></textarea>
+                            <label for="personalized_note">Personalized Note</label>
+                            <textarea name="personalized_note" id="note" cols="30" rows="10" placeholder="Enter a personal note"></textarea>
+                        </div>
+                        <div class="pickup-inputs  hide-inputs">
+                            <label class="required" for="name">Enter your Name</label>
+                            <input type="text" name="name" placeholder="Enter your name">
+                            <label class="required" for="email">Enter your Email</label>
+                            <input type="email" name="email" placeholder="Enter your email">
+                            <label class="required" for="name">Enter your Phone</label>
+                            <input type="text" name="phone" placeholder="Enter your phone number">
+                            <label for="pickup-address">Pickup Address</label>
+                            <div>
+                                <p>No 34 Oshodi Bypass, Ejogbo Idumota Lagos</p>
+                            </div>
+                            <label for="personalized_note">Personalized Note</label>
+                            <textarea name="personalized_note" id="note" cols="30" rows="10" placeholder="Enter a personal note"></textarea>
+                        </div>
+                    </div> 
+                </div>
+                <div class="summary">
+                    <hr>
+                    <p><b>Subtotal: </b> <span class="subtotal">&#8358;{{ cart.get_total_price|add:vat|intcomma }}</span></p>
+                    <p><b>Delivery Fee: </b> <span class="delivery-fee">&#8358;0</span></p>
+                    <hr>
+                    <p><b>Grand Total: </b> <span class="total">&#8358;{{ cart.get_total_price|add:vat|intcomma }}</span></p>
+                    <button class="submit-btn" onclick="fillForm();">Place Order</button>
+                </div>
+                <form method="post" class="order-form" style="display: none;">
+                    {{ form.as_p }}
+                    <p><input type="submit" value="Place order"></p>
+                    {% csrf_token %}
+                </form>
+            </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/delivery.js' %}"></script>
+{% endblock %}

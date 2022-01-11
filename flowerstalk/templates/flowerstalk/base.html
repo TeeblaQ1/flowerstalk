@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block styles %}{% endblock %}
+    <title>{% block title %}{% endblock %} | Flowerstalkng</title>
+</head>
+<body>
+    <header> 
+        <div class="section-wrap">
+            <div class="top-nav flex between">
+                <div class="call-us">
+                    <p><b>CALL US:</b> &nbsp; <span>08184389245</span></p>                
+                </div>
+                <div class="social">
+                    <img src="{% static 'img/ig.svg' %}" alt="">
+                    <img src="{% static 'img/twitter.svg' %}" alt="">
+                    <img src="{% static 'img/fb.svg' %}" alt="">
+                </div>
+            </div>
+            <div class="logo relative flex center">
+                <div class="logo-img flex">
+                    <i class="fas fa-bars mobile-nav-icon" onclick="showMobileNav();"></i>
+                    <img src="{% static 'img/logo.png' %}" class="pointer" alt="" onclick="goToHomePage();">
+                </div>
+                
+                <div class="user-icons flex absolute">
+                    <div class="relative pointer" onclick="goToCart();">
+                        <img src="{% static 'img/bag.svg' %}" alt="">
+                        <div class="cart-number flex center absolute" {% if cart|length < 1 %} style="display: none;" {% endif %}>
+                            {% with total_items=cart|length %}
+                                {{ total_items }}
+                            {% endwith %}
+                        </div>
+                    </div>                
+                </div>
+            </div>
+            <div class="nav-links relative flex center">
+                <ul class="flex center">
+                    <li class="active"><a href="{% url 'flowerstalk:index_page' %}">Home</a></li>
+                    <li><a href="{% url 'flowerstalk:about_page' %}">About Us</a></li>
+                    <li><a href="{% url 'flowerstalk:flowers_list' %}">Flowers</a></li>
+                    <li><a href="{% url 'flowerstalk:gifts_list' %}">Gifts</a></li>
+                    <li><a href="{% url 'flowerstalk:contact_page' %}">Contact</a></li>
+                </ul>
+                <div class="search absolute">
+                    <input type="search" placeholder="Search">
+                    <i class="fas fa-search absolute"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <ul class="mobile-nav show-nav">
+        <li><a href="{% url 'flowerstalk:index_page' %}">Home</a></li>
+        <li><a href="{% url 'flowerstalk:about_page' %}">About Us</a></li>
+        <li><a href="{% url 'flowerstalk:flowers_list' %}">Flowers</a></li>
+        <li><a href="{% url 'flowerstalk:gifts_list' %}">Gifts</a></li>
+        <li><a href="{% url 'flowerstalk:contact_page' %}">Contact</a></li>
+    </ul>
+    <div class="container">
+        <div class="item-added">
+            <p>Item added to cart!</p>
+        </div>
+        <div class="item-in-cart">
+            <p>Item already in cart!</p>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer class="flex center">
+        <p class="footer-heading">Join our Exclusive Mailing List</p>
+        <div class="suscribe flex">
+            <input type="text" placeholder="Enter Email">
+            <button>Join</button>
+        </div>
+        <div class="footer-social flex">
+            <img src="{% static 'img/ig-white.svg' %}" alt="">
+            <img src="{% static 'img/twit-white.svg' %}" alt="">
+            <img src="{% static 'img/fb-white.svg' %}" alt="">
+        </div>
+        <ul class="flex">
+            <li><a href="{% url 'flowerstalk:about_page' %}">About Us</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="{% url 'flowerstalk:contact_page' %}">Contact</a></li>
+        </ul>
+        <p class="copyright">&copy; 2021 &nbsp; FlowerStalkNg. All Rights Reserved | Privacy Policy</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="{% static 'js/carousel.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

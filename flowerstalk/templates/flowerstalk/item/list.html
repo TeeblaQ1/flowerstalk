@@ -1,0 +1,43 @@
+{% extends "flowerstalk/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Flowers, Gifts and more
+{% endblock %}
+
+{% block content %}
+<div class="section-wrap">
+    <div class="section-heading ">
+        <div class="flex between">
+            <h2>All {{category_name}}</h2>
+            <select name="filter-type" id="filter-type">
+                <option value="lowest-price">Lowest Price</option>
+                <option value="highest-price">Highest Price</option>
+                <option value="birthday">Birthday</option>
+                <option value="wedding">Wedding</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="party">Party</option>
+            </select>
+        </div>
+        <hr>
+    </div>
+    <section class="deals">
+        <div class="category deals-wrap flex">
+            {% for item in items %}
+            <div class="deals-item" data-href="{{item.get_absolute_url}}" onclick="itemDetailsPage('{{item.get_absolute_url}}')">
+                <img src="{{item.image.url}}" alt="">
+                <div class="deals-item-text-wrap">
+                    <div class="deals-item-text">
+                        <p class="light-text">{{item.category | capfirst}}</p>
+                        <p>{{item.name}}</p>
+                        <p class="price"><b>&#8358;{{item.price|intcomma}}</b></p>
+                    </div>
+                    <img src="{% static 'img/cart.svg' %}" alt="" onclick="addItemToCart()">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'flowerstalk/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load mathfilters %}
+
+{% block title %}
+Choose A Delivery Method
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="payment-page-modal modal">
+    <div class="modal-container">
+        <div class="modal-content">
+            <i class="far fa-shield"></i>
+            <p>Document uploaded!</p>
+            <p>Once we confirm payment, we will notify you and dispatch your package.</p>
+            <button onclick="goToHomePage()">Continue to Homepage</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

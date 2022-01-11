@@ -1,0 +1,84 @@
+{% extends 'flowerstalk/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load mathfilters %}
+
+{% block title %}
+Your shopping cart
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+    <h1 class="page-title">Your Cart</h1>
+    <div class="clear-cart">
+        <button onclick="clearCart();">Clear Cart</button>
+    </div>
+     <div class="cart-items-wrap">
+        {% for item in cart %}
+        {% with product=item.product %}
+        <div class="cart-item flex between">
+            <div class="cart-info flex between">
+                <div class="item-name-wrap flex">
+                    <img src="{{ product.image.url }}" alt="">
+                    <div class="item-name">
+                        <p class="cart-text">{{product.name}}</p>
+                        <p class="light-text">In stock - {{ product.quantity }}</p>
+                    </div>
+                </div>
+                <div class="price-wrap flex between">
+                    <p>&#8358;{{ item.price | intcomma }}</p>
+                    <p>x</p>
+                    <div class="count-wrap flex">
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.override }}
+                            <input type="submit" value="Update">
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="total one flex between">
+                <div class="total-text flex column ">
+                    <p class="light-text">Sub total</p>
+                    <p class="cart-text item-price">{{item.total_price|intcomma}}</p>
+                </div>
+                <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                    <i class="far fa-trash"></i>
+                    <input type="submit" value="Remove">
+                    {% csrf_token %}
+                </form>
+            </div>                
+        </div>
+        {% endwith %}
+        {% endfor %}
+     </div>
+     <div class="cart-summary">
+        <div class="cart-summary-text">
+            <h3>Cart Summary</h3>
+            <div class="vat flex between">
+                <p><b>VAT</b></p>
+                <p class="bold" id="vat">{{ vat|floatformat:"0"|intcomma }}</p>
+            </div>
+            <div class="vat flex between">
+                <p class="bold">Subtotal</p>
+                <p class="bold" id="grand-total">{{ cart.get_total_price|intcomma }}</p>
+            </div> 
+            <div class="vat flex between">
+                <p class="bold">Total</p>
+                <p class="bold" id="grand-total">{{ cart.get_total_price|add:vat|intcomma }}</p>
+            </div> 
+        </div> 
+        <a href="{% url 'orders:order_create' %}">
+            <button>Checkout</button>
+        </a>
+     </div>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

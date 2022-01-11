@@ -1,0 +1,53 @@
+{% extends 'flowerstalk/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load mathfilters %}
+
+{% block title %}
+Choose A Delivery Method
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="payment-proof-container">
+    <h1 class="page-title">Upload payment proof</h1>
+    <div class="wrap payment-proof">
+        <!-- <input type="file" name="upload-image" id="upload-input"> -->
+        <div class="drop-zone flex center">
+            <form class="payment-upload-form" method="post" enctype="multipart/form-data" action="{% url 'orders:payment_proof' %}">
+                <p class="drop-zone-text">Drop file here or click to upload</p>
+                <!-- <div class="drop-zone-img" data-label = 'file.jpg'></div> -->
+                <input type="file" name="image" class="dropzone-input">
+                <input type="date" name="payment_date" class="dropzone-input">
+                <input type="text" placeholder="Amount Paid" name="amount_paid" class="dropzone-input">
+                <input name="orderItem" type="text" class="dropzone-input">
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="proof-details">
+            <p class="drop-zone-text">Enter date of payment</p>
+            <input type="date" name="payment_date">
+            <input type="text" placeholder="Amount Paid" name="amount_paid">
+            <input name="orderItem" type="text" placeholder="Order ID (e.g. FLWSTK00001)">
+            <button onclick="fillUploadForm()">Upload</button>
+        </div>
+    </div>
+</div>
+<div class="payment-page-modal modal" {% if not success %} style="display: none;"{% endif %}>
+    <div class="modal-container">
+        <div class="modal-content">
+            <i class="far fa-shield"></i>
+            <p>Document uploaded!</p>
+            <p>Once we confirm payment, we will notify you and dispatch your package.</p>
+            <button onclick="goToHomePage()">Continue to Homepage</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/drag-and-drop.js' %}"></script>
+{% endblock %}
