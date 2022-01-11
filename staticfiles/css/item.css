@@ -1,0 +1,31 @@
+
+/* Categories page */
+.deals-wrap {
+    justify-content: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.deals-item {
+    max-width: 250px;
+}
+.deals-item {
+    margin-bottom: 50px;
+}
+.section-heading {
+    padding: 50px 5%;
+}
+.section-heading > hr {
+    width: 100%;
+    margin-top: 20px;
+}
+@media (max-width:760px) {
+    .section-heading {
+        padding: 20px 5%;
+    }
+    .deals-item {
+        margin-bottom: 20px;
+    }
+    .deals-item-text {
+        margin-right: 10px;
+    }
+}
