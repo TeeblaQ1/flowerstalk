@@ -10,7 +10,7 @@ class Order(models.Model):
 
     name = models.CharField(max_length=128)
     email = models.EmailField()
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=32)
     options = models.CharField(max_length=10, choices=ORDER_OPTIONS, default='delivery')
     lga = models.CharField(max_length=128, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
