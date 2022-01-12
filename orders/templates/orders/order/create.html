@@ -77,7 +77,7 @@ Choose A Delivery Method
                     <p><b>Grand Total: </b> <span class="total">&#8358;{{ cart.get_total_price|add:vat|intcomma }}</span></p>
                     <button class="submit-btn" onclick="fillForm();">Place Order</button>
                 </div>
-                <form method="post" class="order-form" style="display: none;">
+                <form method="post" class="order-form" style="display: none;" action="{% url 'orders:order_create' %}">
                     {{ form.as_p }}
                     <p><input type="submit" value="Place order"></p>
                     {% csrf_token %}
