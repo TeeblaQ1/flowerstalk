@@ -36,3 +36,15 @@ Thank You
     </div>
 </div>
 {% endblock %}
+
+{% block script %}
+<script>
+    function getGrandTotal() {
+    let totalWrap = document.querySelector('.grandTotal')
+    let grandTotal = sessionStorage.getItem('grandTotalPrice') || 0
+
+    totalWrap.innerHTML = '&#8358;' + `${new Intl.NumberFormat().format(grandTotal)}`
+}
+getGrandTotal()
+</script>
+{% endblock %}

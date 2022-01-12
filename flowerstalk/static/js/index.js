@@ -388,13 +388,7 @@ function fillGiftsPage() {
     })
 }
 
-function getGrandTotal() {
-    let totalWrap = document.querySelector('.grandTotal')
-    let grandTotal = sessionStorage.getItem('grandTotalPrice') || 0
 
-    totalWrap.innerHTML = '&#8358;' + `${new Intl.NumberFormat().format(grandTotal)}`
-}
-getGrandTotal()
 
 function itemDetailsPage(url) {
     window.location = url
