@@ -27,7 +27,7 @@ def order_create(request):
             item_price = item['quantity'] * int(item['price'])
             total_price += item_price
         vat = 0.075 * total_price
-    return render(request, 'orders/order/create.html', {'cart': cart, 'form': form, 'vat': vat})
+        return render(request, 'orders/order/create.html', {'cart': cart, 'form': form, 'vat': vat})
 
 def proof_upload(request):
     if request.method == 'POST':
