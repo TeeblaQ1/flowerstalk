@@ -11,6 +11,7 @@ def order_create(request):
     if request.method == 'POST':
         form = OrderCreateForm(data=request.POST)
         vat = 0
+        print(form)
         if form.is_valid():
             order = form.save()
             order_id = 'FLWSTK'+ str(order.id).zfill(5)
