@@ -8,6 +8,7 @@ from cart.cart import Cart
 # Create your views here.
 def order_create(request):
     cart = Cart(request)
+    total_price = 0
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
@@ -21,13 +22,12 @@ def order_create(request):
     
     else:
         form = OrderCreateForm()
-        total_price = 0
         for item in cart:
             item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'override': True})
             item_price = item['quantity'] * int(item['price'])
             total_price += item_price
-        vat = 0.075 * total_price
-        return render(request, 'orders/order/create.html', {'cart': cart, 'form': form, 'vat': vat})
+    vat = 0.075 * total_price
+    return render(request, 'orders/order/create.html', {'cart': cart, 'form': form, 'vat': vat})
 
 def proof_upload(request):
     if request.method == 'POST':
