@@ -7,17 +7,22 @@ Thank You
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="page-container">
     <h1>Payment</h1>
     <div class="payment-details-wrap">
-        <p><b>Payment Details</b></p> <hr>
-        <p><b>Amount to pay: </b> <span class="grandTotal"></span></p> <hr>
-        <p><b>Account Name: </b> Flowerstalk</p> <hr>
-        <p><b>Account Number: </b> 0012345678</p> <hr>
-        <p><b>Bank: </b> Guaranteed Trust Bank</p>
+        <p><b>Payment Details</b></p>
+        <hr>
+        <p><b>Amount to pay: </b> <span class="grandTotal"></span></p>
+        <hr>
+        <p><b>Account Name: </b> Flowerstalk Nigeria Limited</p>
+        <hr>
+        <p><b>Account Number: </b> 0111514936</p>
+        <hr>
+        <p><b>Bank: </b> Guaranteed Trust Bank (GT Bank)</p>
         <p><b>Order ID: </b> {{order_id}}</p>
     </div>
     <div class="made-payment">
