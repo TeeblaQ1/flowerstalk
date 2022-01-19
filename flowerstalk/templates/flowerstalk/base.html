@@ -1,28 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block styles %}{% endblock %}
     <title>{% block title %}{% endblock %} | Flowerstalkng</title>
 </head>
+
 <body>
-    <header> 
+    <header>
         <div class="section-wrap">
             <div class="top-nav flex between">
                 <div class="call-us">
-                    <p><b>CALL US:</b> &nbsp; <span>08184389245</span></p>                
+                    <p><b>CALL US:</b> &nbsp; <span>08179218529</span></p>
                 </div>
                 <div class="social">
                     <img src="{% static 'img/ig.svg' %}" alt="">
@@ -35,16 +34,17 @@
                     <i class="fas fa-bars mobile-nav-icon" onclick="showMobileNav();"></i>
                     <img src="{% static 'img/logo.png' %}" class="pointer" alt="" onclick="goToHomePage();">
                 </div>
-                
+
                 <div class="user-icons flex absolute">
                     <div class="relative pointer" onclick="goToCart();">
                         <img src="{% static 'img/bag.svg' %}" alt="">
-                        <div class="cart-number flex center absolute" {% if cart|length < 1 %} style="display: none;" {% endif %}>
+                        <div class="cart-number flex center absolute" {% if cart|length < 1 %} style="display: none;"
+                            {% endif %}>
                             {% with total_items=cart|length %}
-                                {{ total_items }}
+                            {{ total_items }}
                             {% endwith %}
                         </div>
-                    </div>                
+                    </div>
                 </div>
             </div>
             <div class="nav-links relative flex center">
@@ -86,14 +86,20 @@
             <button>Join</button>
         </div>
         <div class="footer-social flex">
-            <img src="{% static 'img/ig-white.svg' %}" alt="">
-            <img src="{% static 'img/twit-white.svg' %}" alt="">
-            <img src="{% static 'img/fb-white.svg' %}" alt="">
+            <a href="https://www.instagram.com/flowerstalknigeria/">
+                <img src="{% static 'img/ig-white.svg' %}" alt="">
+            </a>
+            <a href="">
+                <img src="{% static 'img/twit-white.svg' %}" alt="">
+            </a>
+            <a href="https://www.facebook.com/Flowerstalk-NG-144607989536485">
+                <img src="{% static 'img/fb-white.svg' %}" alt="">
+            </a>
         </div>
         <ul class="flex">
             <li><a href="{% url 'flowerstalk:about_page' %}">About Us</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Events</a></li>
+            <li><a href="#">Flowers</a></li>
+            <li><a href="#">Gifts</a></li>
             <li><a href="{% url 'flowerstalk:contact_page' %}">Contact</a></li>
         </ul>
         <p class="copyright">&copy; 2021 &nbsp; FlowerStalkNg. All Rights Reserved | Privacy Policy</p>
@@ -105,4 +111,5 @@
     {% block script %}
     {% endblock %}
 </body>
+
 </html>
