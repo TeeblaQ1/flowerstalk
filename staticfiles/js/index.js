@@ -6,8 +6,9 @@ function goToHomePage() {
 function goToCart() {
     window.location.assign('/cart/')
 }
-function goToPaymentPage() {
-    window.location.assign('payment-page.html')
+
+function clearCart() {
+    window.location.assign('/cart/clear/')
 }
 
 function showMobileNav() {
@@ -388,13 +389,7 @@ function fillGiftsPage() {
     })
 }
 
-function getGrandTotal() {
-    let totalWrap = document.querySelector('.grandTotal')
-    let grandTotal = sessionStorage.getItem('grandTotalPrice')
 
-    totalWrap.innerHTML = '&#8358;' + `${new Intl.NumberFormat().format(grandTotal)}`
-}
-getGrandTotal()
 
 function itemDetailsPage(url) {
     window.location = url
