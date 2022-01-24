@@ -10,11 +10,11 @@ class Order(models.Model):
 
     name = models.CharField(max_length=128)
     email = models.EmailField()
-    phone = models.CharField(max_length=32)
+    phone = models.IntegerField()
     options = models.CharField(max_length=10, choices=ORDER_OPTIONS, default='delivery')
     lga = models.CharField(max_length=128, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
-    personalized_note = models.TextField()
+    personalized_note = models.TextField(blank=True, null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     created = models.DateTimeField(auto_now_add=True)

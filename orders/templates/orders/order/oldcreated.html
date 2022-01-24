@@ -1,0 +1,43 @@
+{% extends 'flowerstalk/base.html' %}
+{% load static %}
+
+{% block title %}
+Thank You
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <h1>Payment</h1>
+    <div class="payment-details-wrap">
+        <p><b>Payment Details</b></p>
+        <hr>
+        <p><b>Amount to pay: </b> <span class="grandTotal"></span></p>
+        <hr>
+        <p><b>Account Name: </b> Flowerstalk Nigeria Limited</p>
+        <hr>
+        <p><b>Account Number: </b> 0111514936</p>
+        <hr>
+        <p><b>Bank: </b> Guaranteed Trust Bank (GT Bank)</p>
+        <p><b>Order ID: </b> {{order_id}}</p>
+    </div>
+    <div class="made-payment">
+        <p>Already made payment?</p>
+        <a href="{% url 'orders:payment_proof' %}"><button>Upload Reciept</button></a>
+    </div>
+</div>
+<div class="payment-page-modal modal">
+    <div class="modal-container">
+        <div class="modal-content">
+            <i class="fas fa-exclamation"></i>
+            <p>You need to make payment and upload your proof.</p>
+            <p>Click continue to see payment details.</p>
+            <button onclick="closeModal()">Continue</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

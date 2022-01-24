@@ -6,8 +6,9 @@ function goToHomePage() {
 function goToCart() {
     window.location.assign('/cart/')
 }
-function goToPaymentPage() {
-    window.location.assign('payment-page.html')
+
+function clearCart() {
+    window.location.assign('/cart/clear/')
 }
 
 function showMobileNav() {

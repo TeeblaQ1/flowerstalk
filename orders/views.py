@@ -9,9 +9,7 @@ from cart.cart import Cart
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
-        form = OrderCreateForm(data=request.POST)
-        vat = 0
-        print(form)
+        form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save()
             order_id = 'FLWSTK'+ str(order.id).zfill(5)
@@ -19,8 +17,12 @@ def order_create(request):
                 OrderItem.objects.create(order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
             
             cart.clear()
-            return render(request, 'orders/order/created.html', {'order': order, 'order_id': order_id})
+            return render(request, 'orders/payment/proof_upload.html', {'order': order, 'order_id': order_id})
     
+    elif request.GET.get('orderId'):
+        order_id = str(request.GET.get('orderId'))
+        return render(request, 'orders/payment/proof_upload.html', {'order_id': order_id})
+
     else:
         form = OrderCreateForm()
         total_price = 0

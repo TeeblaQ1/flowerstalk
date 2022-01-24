@@ -12,7 +12,24 @@ Choose A Delivery Method
 {% endblock %}
 
 {% block content %}
+<div class="page-container">
+    <h1>Payment Details</h1>
+    <div class="payment-details-wrap">
+        <p><b>Payment Details</b></p>
+        <hr>
+        <p><b>Amount to pay: </b> <span class="grandTotal"></span></p>
+        <hr>
+        <p><b>Account Name: </b> Flowerstalk Nigeria Limited</p>
+        <hr>
+        <p><b>Account Number: </b> 0111514936</p>
+        <hr>
+        <p><b>Bank: </b>GT Bank</p>
+        <hr>
+        <p><b>Order ID: </b> {{order_id}}</p>
+    </div>
+</div>
 <div class="payment-proof-container">
+    <h3>Already made payment?</h3>
     <h1 class="page-title">Upload payment proof</h1>
     <div class="wrap payment-proof">
         <!-- <input type="file" name="upload-image" id="upload-input"> -->
@@ -31,7 +48,7 @@ Choose A Delivery Method
             <p class="drop-zone-text">Enter date of payment</p>
             <input type="date" name="payment_date">
             <input type="text" placeholder="Amount Paid" name="amount_paid">
-            <input name="orderItem" type="text" placeholder="Order ID (e.g. FLWSTK00001)">
+            <input name="orderItem" type="text" placeholder="Order ID (e.g. FLWSTK00001)" value="{{order_id}}" disabled>
             <button onclick="fillUploadForm()">Upload</button>
         </div>
     </div>
@@ -50,4 +67,14 @@ Choose A Delivery Method
 
 {% block script %}
 <script src="{% static 'js/drag-and-drop.js' %}"></script>
+<script>
+    function getGrandTotal() {
+    let totalWrap = document.querySelector('.grandTotal')
+    let grandTotal = sessionStorage.getItem('grandTotalPrice') || 0
+
+    totalWrap.innerHTML = '&#8358;' + `${new Intl.NumberFormat().format(grandTotal)}`
+}
+getGrandTotal()
+</script>
 {% endblock %}
+

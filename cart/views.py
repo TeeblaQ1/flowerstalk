@@ -35,3 +35,7 @@ def cart_detail(request):
     vat = 0.075 * total_price
     return render(request, 'cart/detail.html', {'cart': cart, 'vat': vat})
 
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect('cart:cart_detail')
