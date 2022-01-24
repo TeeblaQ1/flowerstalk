@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+# SECRET_KEY = 'django-insecure-rcin_mdk%anwkmc=xq)+-^vkrb-u=1s+9nla8t0*fd)it@q+6)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['flowerstalkng.herokuapp.com', '127.0.0.1']
 
@@ -151,7 +152,11 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
-
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'teeblaq',
+#     'API_KEY': '562997138442662',
+#     'API_SECRET': 'gUmbDnebjGj6BicJiHUy7iLO6pQ',
+# }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
