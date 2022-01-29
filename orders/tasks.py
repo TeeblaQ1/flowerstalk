@@ -31,10 +31,10 @@ def order_created_mail(order_id):
     order = Order.objects.get(id=order_id)
     order_id = 'FLWSTK'+ str(order.id).zfill(5)
     current_site_url = f'{current_url}/orders/create/?orderId={order_id}'
-    subject = f'Order nr. {order.id}'
+    subject = f'Order {order_id} has been created'
     message = f'Dear {order.name},\n\n' \
     f'You have successfully placed an order.' \
-    f'Your order ID is {order.id}. \n\n' \
+    f'Your order ID is {order_id}. \n\n' \
     f'Please use the link below if you would like to upload your proof of payment at a later time: \n' \
     f'{current_site_url}' 
     mail_sent = send_mail(subject, message, 'ikoyiflowerstalk@gmail.com', [order.email])
