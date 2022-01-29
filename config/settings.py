@@ -160,3 +160,14 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ikoyiflowerstalk@gmail.com'
+EMAIL_HOST_PASSWORD = 'uzytkfjwokwsocyh'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+DEFAULT_FROM_EMAIL = 'Flowerstalk Admin<noreply@flowerstalkng.herokuapp.com>'
+
+# CELERY_BROKER_URL = 'amqp://localhost'
