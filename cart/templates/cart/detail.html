@@ -36,7 +36,7 @@ Your shopping cart
                         <form action="{% url 'cart:cart_add' product.id %}" method="post">
                             {{ item.update_quantity_form.quantity }}
                             {{ item.update_quantity_form.override }}
-                            <input type="submit" value="Update">
+                            <input type="submit" value="Update" id="submitBtn" hidden>
                             {% csrf_token %}
                         </form>
                     </div>
@@ -48,8 +48,8 @@ Your shopping cart
                     <p class="cart-text item-price">{{item.total_price|intcomma}}</p>
                 </div>
                 <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-                    <i class="far fa-trash"></i>
-                    <input type="submit" value="Remove">
+                    <i class="far fa-trash" id="trashIcon"></i>
+                    <input type="submit" value="Remove" id="removeBtn" hidden>
                     {% csrf_token %}
                 </form>
             </div>                
@@ -81,4 +81,15 @@ Your shopping cart
 {% endblock %}
 
 {% block script %}
+<script>
+    const quantityInput = document.querySelector('#id_quantity')
+    quantityInput.addEventListener('change', (event) => {
+        document.querySelector('#submitBtn').click()
+    })
+
+    const removeIcon = document.querySelector('#trashIcon')
+    removeIcon.addEventListener('click', ()=>{
+        document.querySelector('#removeBtn').click()
+    })
+</script>
 {% endblock %}

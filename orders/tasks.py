@@ -36,7 +36,11 @@ def order_created_mail(order_id):
     f'You have successfully placed an order.' \
     f'Your order ID is {order_id}. \n\n' \
     f'Please use the link below if you would like to upload your proof of payment at a later time: \n' \
-    f'{current_site_url}' 
+    f'{current_site_url} \n\n\n\n'
+    f'Feel free to contact us'
+    f'Tel - 09051613991'
+    f'Email - ikoyiflowerstalk@gmail.com'
+    f'Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.' 
     mail_sent = send_mail(subject, message, 'ikoyiflowerstalk@gmail.com', [order.email])
     # print(mail_sent)
     return mail_sent
@@ -61,7 +65,11 @@ def order_created_mail_admin(order_id):
         Order Amount: \t\t{order_admin.total_price}
         Order Option: \t\t{order_admin.options} \n\n
         Please use the link below to view the order details on the admin page:
-        {current_site_url_admin}
+        {current_site_url_admin} \n\n\n\n
+        Feel free to contact us
+        Tel - 09051613991
+        Email - ikoyiflowerstalk@gmail.com
+        Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.
     '''
     mail_sent = send_mail(subject_admin, message_admin, 'ikoyiflowerstalk@gmail.com', ['ikoyiflowerstalk@gmail.com'])
     # print('Admin: ', mail_sent)
@@ -87,7 +95,11 @@ def payment_created_mail_admin(payment_id):
         Payment Amount: \t\t{payment_admin.amount_paid}
         Order Option: \t\t{payment_admin.orderItem.options} \n\n
         Please use the link below to view the order details on the admin page:
-        {current_site_url_admin}
+        {current_site_url_admin} \n\n\n\n
+        Feel free to contact us
+        Tel - 09051613991
+        Email - ikoyiflowerstalk@gmail.com
+        Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.
     '''
     mail_sent = send_mail(subject_admin, message_admin, 'ikoyiflowerstalk@gmail.com', ['ikoyiflowerstalk@gmail.com'])
     # print('Admin Payment: ', mail_sent)
