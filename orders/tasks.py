@@ -36,10 +36,10 @@ def order_created_mail(order_id):
     f'You have successfully placed an order.' \
     f'Your order ID is {order_id}. \n\n' \
     f'Please use the link below if you would like to upload your proof of payment at a later time: \n' \
-    f'{current_site_url} \n\n\n\n'
-    f'Feel free to contact us'
-    f'Tel - 09051613991'
-    f'Email - ikoyiflowerstalk@gmail.com'
+    f'{current_site_url} \n\n\n\n' \
+    f'Feel free to contact us' \
+    f'Tel - 09051613991' \
+    f'Email - ikoyiflowerstalk@gmail.com' \
     f'Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.' 
     mail_sent = send_mail(subject, message, 'ikoyiflowerstalk@gmail.com', [order.email])
     # print(mail_sent)
