@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECRET_KEY = 'django-insecure-rcin_mdk%anwkmc=xq)+-^vkrb-u=1s+9nla8t0*fd)it@q+6)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['flowerstalkng.herokuapp.com', '127.0.0.1']
 
@@ -145,7 +145,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CART_SESSION_ID = 'cart'
-
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'teeblaq',
+#     'API_KEY': '562997138442662',
+#     'API_SECRET': 'gUmbDnebjGj6BicJiHUy7iLO6pQ',
+# }
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),

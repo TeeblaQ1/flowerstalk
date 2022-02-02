@@ -1,7 +1,17 @@
+from io import BytesIO
 from celery import shared_task
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
 from .models import Order, PaymentUpload
 import time
+import os
+
+os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
+GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
+os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
+from weasyprint import HTML, CSS
+
 
 # current_url = 'http://127.0.0.1:8000'
 current_url = 'https://flowerstalkng.herokuapp.com'
@@ -36,14 +46,19 @@ def order_created_mail(order_id):
     f'You have successfully placed an order.' \
     f'Your order ID is {order_id}. \n\n' \
     f'Please use the link below if you would like to upload your proof of payment at a later time: \n' \
-    f'{current_site_url} \n\n\n\n' \
-    f'Feel free to contact us' \
-    f'Tel - 09051613991' \
-    f'Email - ikoyiflowerstalk@gmail.com' \
+    f'{current_site_url}' \
+    f'Best Regards.\nFlowerstalk Nigeria. \n\n\n\n'
+    f'Feel free to contact us \n' \
+    f'Tel - 09051613991 \n' \
+    f'Email - ikoyiflowerstalk@gmail.com \n' \
     f'Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.' 
-    mail_sent = send_mail(subject, message, 'ikoyiflowerstalk@gmail.com', [order.email])
-    # print(mail_sent)
-    return mail_sent
+    email = EmailMessage(subject, message, 'ikoyiflowerstalk@gmail.com', [order.email])
+    html = render_to_string('orders/order/pdf.html', {'order': order})
+    out = BytesIO()
+    stylesheets=[CSS(settings.STATIC_ROOT + 'css/pdf.css')]
+    HTML(string=html).write_pdf(out, stylesheets=stylesheets)
+    email.attach(f'order_{order_id}_pending.pdf', out.getvalue(), 'application/pdf')
+    email.send()
 
 
 def order_created_mail_admin(order_id):
@@ -104,3 +119,31 @@ def payment_created_mail_admin(payment_id):
     mail_sent = send_mail(subject_admin, message_admin, 'ikoyiflowerstalk@gmail.com', ['ikoyiflowerstalk@gmail.com'])
     # print('Admin Payment: ', mail_sent)
     return mail_sent
+
+
+def payment_confirmed_mail_admin(order_id):
+    """
+    Task to send an e-mail notification when a payment has been confirmed.
+    """
+    time.sleep(10)
+    order_payment = Order.objects.get(id=order_id)
+    order_payment_id = 'FLWSTK'+ str(order_payment.id).zfill(5)
+    subject = f'Payment Confirmed! [Order {order_id}]'
+    message = f'Dear {order_payment.name},\n\n' \
+    f'Your payment has been confirmed, thank you for shopping with us.' \
+    f'Our team is processing your order. Your order ID is {order_payment_id}.\n' \
+    f'If there will be need, one of our representative will contact you. \n' \
+    f'Please find attached your receipt. \n'
+    f'Best Regards.\nFlowerstalk Nigeria. \n\n\n\n' \
+    f'Feel free to contact us \n' \
+    f'Tel - 09051613991 \n' \
+    f'Email - ikoyiflowerstalk@gmail.com \n' \
+    f'Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.' 
+    # mail_sent = send_mail(subject, message, 'ikoyiflowerstalk@gmail.com', [order_payment.email])
+    email = EmailMessage(subject, message, 'ikoyiflowerstalk@gmail.com', [order_payment.email])
+    html = render_to_string('orders/order/pdf.html', {'order': order_payment})
+    out = BytesIO()
+    stylesheets=[CSS(settings.STATIC_ROOT + 'css/pdf.css')]
+    HTML(string=html).write_pdf(out, stylesheets=stylesheets)
+    email.attach(f'order_{order_payment_id}.pdf', out.getvalue(), 'application/pdf')
+    email.send()

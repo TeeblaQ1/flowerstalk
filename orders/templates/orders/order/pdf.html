@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="order-details-wrap">
+        <div class="page-title">
+            <p>Flowerstalk</p>
+        </div>
+        <div class="invoice wrap">
+            <p>Invoice No {{order.id}}</p>
+            <p class="light-text">{{order.created}}</p>
+        </div>
+        <h1>Bill To</h1>
+        <div class="billing-details wrap">
+            <p class="name">{{order.name}}</p>
+            <p class="phone">{{order.phone}}</p>
+            <p class="email">{{order.email}}</p>
+            {% if order.address %}<p class="address">{{order.address}}</p>{% endif %}
+        </div>
+        <h1>Items Bought</h1>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr class="bg-sec">
+                        <th>PRODUCT</th>
+                        <th>PRICE</th>
+                        <th>QUANTITY</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.items.all %}
+                    <tr>
+                        <td>{{item.product.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>&#8358;{{item.get_cost}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="total bg-sec">
+                        <td>Total</td>
+                        <td></td>
+                        <td></td>
+                        <td>&#8358;{{order.get_total_cost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="stamp-wrap">
+        {% if order.paid %}
+        <div class="stamp green">
+            PAID
+        </div>
+        {% else %}
+        <div class="stamp red">
+            PENDING PAYMENT
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

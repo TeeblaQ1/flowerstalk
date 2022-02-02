@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    font-family: "Poppins";
+}
+
+.bg-primary {
+    background-color: rgb(40, 109, 8);
+    color: white;
+}
+
+.bg-sec {
+    background-color: rgb(61, 146, 22);
+    color: white;
+}
+
+.bg-light {
+    background-color: #eee;
+}
+
+.light-text {
+    color: rgb(216, 216, 216);
+}
+
+.header,
+.subheader {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-left: 30px;
+    font-weight: 500;
+}
+
+.header p,
+h1 {
+    font-size: 24px;
+}
+
+h1 {
+    margin: 20px 0 10px;
+}
+
+.subheader ul {
+    list-style: none;
+    display: flex;
+    font-size: 14px;
+}
+
+.subheader ul li:after {
+    content: '>';
+    margin: 0 10px;
+}
+
+.subheader ul li:last-child:after {
+    content: '';
+}
+
+.main {
+    padding: 20px 40px;
+    overflow: hidden;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.page-title p {
+    font-size: 24px;
+}
+
+.page-title button {
+    height: 40px;
+    width: 120px;
+    border-radius: 200px;
+    border: none;
+    /* background-color: rgb(212, 212, 212); */
+    font-weight: bold;
+    color: white;
+}
+
+.details-wrap {
+    margin: 20px 0 30px;
+}
+
+.details-item {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.details-item b {
+    width: 40%;
+    max-width: 200px;
+}
+
+.order-details-wrap {
+    padding: 20px;
+    overflow: hidden;
+}
+
+.billing-details p {
+    line-height: 30px;
+    font-weight: 500;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 0 10px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+tr {
+    height: 50px;
+}
+
+tr.total {
+    font-weight: bold;
+}
+
+.stamp-wrap {
+    position: relative;
+    height: 100px;
+    margin: 20px 0;
+}
+
+.stamp {
+    display: inline-block;
+    /* border-radius: 4px; */
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    transform: rotate(-25deg);
+    transform-origin: top left;
+}
+
+.stamp.red {
+    border: 7px solid rgb(240, 40, 40);
+    color: rgb(240, 40, 40);
+
+}
+
+.stamp.green {
+    border: 7px solid rgb(52, 182, 52);
+    color: rgb(52, 182, 52);
+
+}
+
+@media (max-width: 500px) {
+
+    .main {
+        padding: 20px 10px;
+    }
+
+    .header,
+    .subheader {
+        padding: 0 10px;
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .table-wrap {
+        overflow: scroll;
+    }
+
+    .stamp {
+        font-size: 16px;
+    }
+}

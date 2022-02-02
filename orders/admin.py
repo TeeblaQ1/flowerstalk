@@ -1,3 +1,5 @@
+from django.urls import reverse
+from django.utils.safestring import mark_safe
 from django.contrib import admin
 from .models import Order, OrderItem, PaymentUpload
 import csv, datetime
@@ -26,6 +28,19 @@ def export_to_csv(modeladmin, request, queryset):
 export_to_csv.short_description = 'Export to CSV'
 
 
+def order_detail(obj):
+    url = reverse('orders:admin_order_detail', args=[obj.id])
+    return mark_safe(f'<a href="{url}">View</a>')
+
+def order_confirm_payment(obj):
+    url = reverse('orders:admin_confirm_payment', args=[obj.id])
+    return mark_safe(f'<a href="{url}">Confirm Payment</a>')
+
+def order_pdf(obj):
+    url = reverse('orders:admin_order_pdf', args=[obj.id])
+    return mark_safe(f'<a href="{url}">PDF</a>')
+order_pdf.short_description = 'Invoice'
+
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ['product']
@@ -36,8 +51,8 @@ class PaymentUploadInline(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['name', 'total_price', 'email', 'phone', 'address', 'lga', 'paid', 'created']
-    list_filter = ['paid', 'created', 'updated']
+    list_display = ['name', 'total_price', 'options', 'paid', 'created', order_detail, order_confirm_payment, order_pdf]
+    list_filter = ['paid', 'options', 'created', 'updated']
     inlines = [OrderItemInline, PaymentUploadInline]
     actions = [export_to_csv]
 

@@ -110,6 +110,8 @@
 
     .map {
         height: 250px;
+        width: 100%;
+        padding: 0;
     }
 }
 
