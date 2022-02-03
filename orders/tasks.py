@@ -14,7 +14,7 @@ from weasyprint import HTML, CSS
 
 
 # current_url = 'http://127.0.0.1:8000'
-current_url = 'https://flowerstalkng.herokuapp.com'
+current_url = os.environ.get('CURRENT_URL')
 
 @shared_task
 def order_created(order_id):
