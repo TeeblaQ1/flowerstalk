@@ -7,7 +7,7 @@
         <tr>
             <td>
                 <a style=" width: 100%;" href="#" target="_blank">
-                    <img src="https://res.cloudinary.com/teeblaq/image/upload/v1643881359/media/images/2022/02/logo_apigaa.jpg" alt="DevGarage" style="width: 250px; margin: 0 auto; display: block;" />
+                    <img src="https://res.cloudinary.com/teeblaq/image/upload/v1643881359/media/images/2022/02/logo_apigaa.jpg" alt="Flowerstalk Logo" style="width: 250px; margin: 0 auto; display: block;" />
                 </a>
             </td>
         </tr>
@@ -23,7 +23,7 @@
         <tr>
             <!-- Third row -->
             <td>
-                <p>Dear {{order.name}}, <br> <br> You have successfully placed an order.Your order ID is {{order_id}}.<br> <br>
+                <p>Dear {{order.name}}, <br> <br> You have successfully placed an order. Your order ID is {{order_id}}.<br> <br>
                     Please use the link below if you would like to upload your proof of payment at a later time: <br>
                     <br> <a
                         href="{{current_site_url}}">{{current_site_url}}</a>
@@ -51,7 +51,7 @@
         <tr>
             <td>
                 <!-- Fourth row -->
-                <p>You recieved this email because an order was placed with <a href="#">chrismadufor@gmail.com</a> <br>
+                <p>You recieved this email because an order was placed with {{order.email}} <br>
                     If this is not authorized by you, kindly ignore this message.</p>
             </td>
 
@@ -59,7 +59,7 @@
         <tr>
             <!-- Fifth row - footer -->
             <td>
-                <p style="text-align: center;margin-top: 40px;"> FlowerStalk Nigeria, 2022</p>
+                <p style="text-align: center;margin-top: 40px;">&copy; FlowerStalk Nigeria, 2022</p>
             </td>
         </tr>
     </table>

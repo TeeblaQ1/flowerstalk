@@ -47,6 +47,7 @@ def order_created_mail(order_id):
     f'Your order ID is {order_id}. \n\n' \
     f'Please use the link below if you would like to upload your proof of payment at a later time: \n' \
     f'{current_site_url} \n' \
+    f'Please find attached a PDF copy of the invoice of your order. \n' \
     f'Best Regards.\nFlowerstalk Nigeria. \n\n\n\n' \
     f'Feel free to contact us \n' \
     f'Tel - 09051613991 \n' \
