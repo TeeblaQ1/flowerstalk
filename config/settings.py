@@ -23,12 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-# SECRET_KEY = 'django-insecure-rcin_mdk%anwkmc=xq)+-^vkrb-u=1s+9nla8t0*fd)it@q+6)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['flowerstalkng.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['flowerstalkng.org', 'flowerstalk.org','flowerstalkng.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -145,11 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CART_SESSION_ID = 'cart'
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'teeblaq',
-#     'API_KEY': '562997138442662',
-#     'API_SECRET': 'gUmbDnebjGj6BicJiHUy7iLO6pQ',
-# }
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
@@ -164,8 +159,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ikoyiflowerstalk@gmail.com'
-EMAIL_HOST_PASSWORD = 'uzytkfjwokwsocyh'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'Flowerstalk Admin<noreply@flowerstalkng.herokuapp.com>'
