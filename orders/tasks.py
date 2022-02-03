@@ -43,11 +43,11 @@ def order_created_mail(order_id):
     current_site_url = f'{current_url}/orders/create/?orderId={order_id}'
     subject = f'Order {order_id} has been created'
     message = f'Dear {order.name},\n\n' \
-    f'You have successfully placed an order.' \
+    f'You have successfully placed an order. ' \
     f'Your order ID is {order_id}. \n\n' \
     f'Please use the link below if you would like to upload your proof of payment at a later time: \n' \
-    f'{current_site_url}' \
-    f'Best Regards.\nFlowerstalk Nigeria. \n\n\n\n'
+    f'{current_site_url} \n' \
+    f'Best Regards.\nFlowerstalk Nigeria. \n\n\n\n' \
     f'Feel free to contact us \n' \
     f'Tel - 09051613991 \n' \
     f'Email - ikoyiflowerstalk@gmail.com \n' \
@@ -130,10 +130,10 @@ def payment_confirmed_mail_admin(order_id):
     order_payment_id = 'FLWSTK'+ str(order_payment.id).zfill(5)
     subject = f'Payment Confirmed! [Order {order_id}]'
     message = f'Dear {order_payment.name},\n\n' \
-    f'Your payment has been confirmed, thank you for shopping with us.' \
+    f'Your payment has been confirmed, thank you for shopping with us. \n' \
     f'Our team is processing your order. Your order ID is {order_payment_id}.\n' \
     f'If there will be need, one of our representative will contact you. \n' \
-    f'Please find attached your receipt. \n'
+    f'Please find attached your receipt. \n' \
     f'Best Regards.\nFlowerstalk Nigeria. \n\n\n\n' \
     f'Feel free to contact us \n' \
     f'Tel - 09051613991 \n' \
