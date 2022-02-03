@@ -215,7 +215,10 @@ tr.total {
 <div class="main">
     <div class="page-title">
         <p>Order {{order.id}}</p>
-        <button class="bg-primary">PRINT ORDER</button>
+        <div>
+            {% if not order.paid %}<a href="{% url 'orders:admin_confirm_payment' order.id %}"><button class="bg-primary" style="cursor: pointer;">Confirm Payment</button></a>{% endif %}
+            <a href="{% url 'orders:admin_order_pdf' order.id %}"><button class="bg-primary" style="cursor: pointer;">Print Order</button></a>
+        </div>
     </div>
     <div class="details-wrap">
         <div class="details-item">
