@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body style=" background-color:#eee; color:#4d4d4d; font-size:16px;">
+    <table style="margin: 0 auto; padding: 20px; width: 80%; max-width: 700px;"
+        cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <a style=" width: 100%;" href="#" target="_blank">
+                    <img src="https://res.cloudinary.com/teeblaq/image/upload/v1643881359/media/images/2022/02/logo_apigaa.jpg" alt="DevGarage" style="width: 250px; margin: 0 auto; display: block;" />
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <!-- Second row -->
+            <td>
+                <h1 style=" text-align: center; padding: 20px; border-top: 5px solid #183A2A; font-size: 24px">Thank you
+                    for placing an
+                    order
+                    from our store</h1>
+            </td>
+        </tr>
+        <tr>
+            <!-- Third row -->
+            <td>
+                <p>Dear {{order.name}}, <br> <br> You have successfully placed an order.Your order ID is {{order_id}}.<br> <br>
+                    Please use the link below if you would like to upload your proof of payment at a later time: <br>
+                    <br> <a
+                        href="{{current_site_url}}">{{current_site_url}}</a>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <!-- Fourth row -->
+                <p>Best Regards,<br>
+                    Flowerstalk Nigeria.</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <!-- Fourth row -->
+                <p>Feel free to contact us<br>
+                    Tel: 09051613991<br>
+                Email: ikoyiflowerstalk@gmail.com<br>
+                Address: 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <!-- Fourth row -->
+                <p>You recieved this email because an order was placed with <a href="#">chrismadufor@gmail.com</a> <br>
+                    If this is not authorized by you, kindly ignore this message.</p>
+            </td>
+
+        </tr>
+        <tr>
+            <!-- Fifth row - footer -->
+            <td>
+                <p style="text-align: center;margin-top: 40px;"> FlowerStalk Nigeria, 2022</p>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

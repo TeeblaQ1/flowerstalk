@@ -52,12 +52,14 @@ def order_created_mail(order_id):
     f'Tel - 09051613991 \n' \
     f'Email - ikoyiflowerstalk@gmail.com \n' \
     f'Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.' 
-    email = EmailMessage(subject, message, 'ikoyiflowerstalk@gmail.com', [order.email])
+    html_message = render_to_string('orders/order/mail_template.html', {'order': order, 'order_id': order_id, 'current_site_url': current_site_url})
+    email = EmailMessage(subject, html_message, 'ikoyiflowerstalk@gmail.com', [order.email])
     html = render_to_string('orders/order/pdf.html', {'order': order})
     out = BytesIO()
     stylesheets=[CSS(settings.STATIC_ROOT + 'css/pdf.css')]
     HTML(string=html).write_pdf(out, stylesheets=stylesheets)
     email.attach(f'order_{order_id}_pending.pdf', out.getvalue(), 'application/pdf')
+    email.content_subtype = 'html'
     email.send()
 
 
@@ -139,11 +141,12 @@ def payment_confirmed_mail_admin(order_id):
     f'Tel - 09051613991 \n' \
     f'Email - ikoyiflowerstalk@gmail.com \n' \
     f'Address - 2, Oyinkan Abayomi Drive, Ikoyi, Lagos.' 
-    # mail_sent = send_mail(subject, message, 'ikoyiflowerstalk@gmail.com', [order_payment.email])
-    email = EmailMessage(subject, message, 'ikoyiflowerstalk@gmail.com', [order_payment.email])
+    html_message = render_to_string('orders/order/mail_template_payment.html', {'order': order_payment, 'order_id': order_payment_id})
+    email = EmailMessage(subject, html_message, 'ikoyiflowerstalk@gmail.com', [order_payment.email])
     html = render_to_string('orders/order/pdf.html', {'order': order_payment})
     out = BytesIO()
     stylesheets=[CSS(settings.STATIC_ROOT + 'css/pdf.css')]
     HTML(string=html).write_pdf(out, stylesheets=stylesheets)
     email.attach(f'order_{order_payment_id}.pdf', out.getvalue(), 'application/pdf')
+    email.content_subtype = 'html'
     email.send()
