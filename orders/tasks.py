@@ -7,9 +7,9 @@ from .models import Order, PaymentUpload
 import time
 import os
 
-os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
-GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
-os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
+# os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
+# GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
+# os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
 from weasyprint import HTML, CSS
 
 

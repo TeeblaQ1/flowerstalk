@@ -12,9 +12,9 @@ from cart.cart import Cart
 from .tasks import order_created, order_created_mail, order_created_mail_admin, payment_created_mail_admin, payment_confirmed_mail_admin
 import os
 
-os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
-GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
-os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
+# os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64\bin")
+# GTK_FOLDER = r'C:\Program Files\GTK3-Runtime Win64\bin'
+# os.environ['PATH'] = GTK_FOLDER + os.pathsep + os.environ.get('PATH', '')
 from weasyprint import HTML, CSS
 
 # Create your views here.
